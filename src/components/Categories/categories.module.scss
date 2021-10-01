@@ -1,0 +1,44 @@
+.categoriesContainer {
+	padding:1em;
+	flex:1 1 auto;
+}
+
+.categories {
+	display:flex;
+	height:100%;
+	flex-wrap:wrap;
+	list-style-type:none;
+
+	li {
+		display:flex;
+		flex-direction:column;
+		justify-content:center;
+		padding:0 1.5em;
+		margin:0.5em;
+		flex:1 1 45%;
+		max-height:250px;
+		font-weight:var(--category-weight);
+		font-size:var(--category-size);
+		color:var(--rich-black);
+		border-radius:var(--card-radius);
+		box-shadow:var(--card-shadow);
+		cursor:pointer;
+		transition:color 200ms ease, background-color 200ms ease, transform 275ms ease;
+
+		img {
+			max-width:50px;
+			height:auto;
+		}
+
+		p {
+			margin-top:1em;
+		}
+
+		&:hover {
+			color:white;
+			background:var(--secondary-clr);
+			transform:translateY(-10px);
+		}
+	}
+
+}
