@@ -2,6 +2,7 @@
 	--primary-clr: hsl(212, 62%, 40%);
 	--secondary-clr: hsl(212, 43%, 51%);
 	--rich-black: hsl(44, 5%, 14%);
+	--soft-gray: hsl(212, 40%, 40%);
 
 	/*
 	------ FONT STYLES ------
@@ -49,7 +50,7 @@ html, body {
 }
 
 html {
-	font-size:16px;
+	font-size:14px;
 }
 
 body {
@@ -62,4 +63,10 @@ body {
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 	monospace;
+}
+
+@media screen and (min-width:768px) {
+	html {
+		font-size:16px;
+	}
 }
