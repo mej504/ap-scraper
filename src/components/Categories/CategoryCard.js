@@ -1,15 +1,17 @@
-const CategoryCard = ({ categoryName, updateCurrentView }) => {
+import { Link, useParams } from 'react-router-dom';
+
+import styles from './categorycard.module.scss';
+
+const CategoryCard = ({ categoryName, slug }) => {
 
 	return (
 
-		<>
-
-			<li onClick={ () => updateCurrentView('/stories') }>
+		<li>
+			<Link className={ styles.linkContainer } to={`/${slug}`}>
 				<img src='/img/placeholder.png' alt='' />
 				<p>{categoryName}</p>
-			</li>
-
-		</>
+			</Link>
+		</li>
 
 	)
 
