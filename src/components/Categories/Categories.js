@@ -11,7 +11,7 @@ const Categories = ({ availableCategories, updateCurrentView }) => {
 
 				{availableCategories.map((cat, i) => {
 					return (
-						<CategoryCard updateCurrentView={ updateCurrentView } categoryName={ cat } key={i} />
+						<CategoryCard updateCurrentView={ updateCurrentView } categoryName={ cat.name } slug={ cat.slug } key={i} />
 					)
 				})}
 
