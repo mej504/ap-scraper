@@ -1,0 +1,10 @@
+.newsListingContainer {
+	padding:1em;
+}
+
+.newsListing {
+	display:grid;
+	grid-template-columns:1fr;
+	gap:0.7em;
+	list-style-type:none;
+}
