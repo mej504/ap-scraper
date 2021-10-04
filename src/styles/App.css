@@ -4,3 +4,8 @@
 	flex-direction:column;
 	height:100vh;
 }
+
+.main-content-container {
+	display:flex;
+	height:100%;
+}
