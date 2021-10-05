@@ -3,6 +3,7 @@
 	--secondary-clr: hsl(212, 43%, 51%);
 	--rich-black: hsl(44, 5%, 14%);
 	--soft-gray: hsl(212, 40%, 40%);
+	--charcoal: hsl(136, 0%, 15%);
 
 	/*
 	------ FONT STYLES ------
@@ -27,6 +28,20 @@
 
 	/* Article */
 	--article-copy-clr: var(--rich-black);
+	--article-hed-size: 2.5rem;
+	--article-hed-weight: 600;
+	--article-hed-line-height: 1.2;
+
+	--article-copy-size: 1.1rem;
+	--article-copy-weight: 400;
+	
+	--article-bylines-size: 0.9rem;
+	--article-bylines-color: var(--soft-gray);
+	--article-byline-weight: 600;
+
+	/* Placeholders */
+	--article-placeholder-clr: var(--charcoal);
+	--article-placeholder-radius: 9999px;
 
 	/*
 	----- UTILITY STYLES ------
