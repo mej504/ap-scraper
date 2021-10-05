@@ -7,4 +7,10 @@
 	grid-template-columns:1fr;
 	gap:0.7em;
 	list-style-type:none;
+
+	@media screen and (min-width:769px) {
+		grid-template-columns:repeat(auto-fit, minmax(500px, 1fr));
+		gap:1.5em;
+	}
+
 }
