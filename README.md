@@ -21,7 +21,6 @@ The front-end is built with React, and incorporates the react-router-dom module 
 
 ## Todos
 ---
-<<<<<<< HEAD
 [ ] Implement implement placeholder cards while fetching news listings
 
 [ ] Update nav bar to include a back arrow
@@ -29,12 +28,6 @@ The front-end is built with React, and incorporates the react-router-dom module 
 [ ] Create hamburger menu
 
 [ ] Remove hamburger for laptops and above
-=======
-[] Implement implement placeholder cards while fetching news listings
-[] Update nav bar to include a back arrow
-[] Create hamburger menu
-[] Remove hamburger for laptops and above
->>>>>>> 1a5a1173ffc45a61b9176ed1a79e590190dfaea6
 
 ## Disclaimer
 ---
