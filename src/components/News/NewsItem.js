@@ -12,8 +12,10 @@ const NewsItem = ({ headline, slug, timestamp, byline }) => {
 
 			<Link to={`/article/:slug`}>
 				<h4>{headline}</h4>
-				<p>{byline}</p>
-				<p>{timestamp}</p>
+				<div className={ styles.metaData }>
+					<p>{byline}</p>
+					<p>{timestamp}</p>
+				</div>
 			</Link>
 
 		</li>

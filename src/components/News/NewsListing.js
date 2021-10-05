@@ -5,15 +5,19 @@ import styles from './news-listing.module.scss';
 
 import NewsItem from './NewsItem';
 
-const NewsListing = ({ apiPath }) => {
+const NewsListing = ({ currentStories, currentlyViewing, apiPath }) => {
 
 	let { category } = useParams();
 	const [ stories, setStories ] = useState(null);
 
+	if( !category ) category = 'us-news';
+
 	useEffect(() => {
 
-		if( !category ) category = 'us-news';
+		let isMounted = true;
+
 		const url = `${apiPath}/${category}`;
+
 
 		const fetchListing = async () => {
 
@@ -34,11 +38,36 @@ const NewsListing = ({ apiPath }) => {
 
 		}
 
-		fetchListing().then(([response, newsStories]) => {
-			setStories(newsStories);
-		})
+		// If currentlyViewing is null, we're on our initial load, and no stories have been fetched
+		if( currentlyViewing.current === null ) {
+			fetchListing().then(([response, newsStories]) => {
+				if( isMounted ) {
+					currentlyViewing.current = category;
+					currentStories.current = newsStories;
+					setStories(newsStories);
+				}
+			})
+		} 
 
-	}, [ apiPath, category ])
+		if( currentlyViewing.current === category ) {
+			setStories(currentStories.current);
+		}
+
+		if( currentlyViewing.current !== category ) {
+			fetchListing().then(([response, newsStories]) => {
+				if( isMounted ) {
+					currentlyViewing.current = category;
+					currentStories.current = newsStories;
+					setStories(newsStories);
+				}
+			})
+		}
+
+		return () => {
+			isMounted = false;
+		}
+
+	}, [ apiPath, category, stories ])
 
 	return (
 

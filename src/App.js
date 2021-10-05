@@ -16,9 +16,16 @@ import RenderView from './components/RenderView/render-view';
 
 function App() {
 
-	const navTitle = 'AP Scraper';
-	const apiPath = process.env.NODE_ENV === 'development' ? 'http://localhost:3010/api' : 'https://minyard.dev/scraper/api';
+	// CONSTANTS
+	const NAV_TITLE = 'AP Scraper';
+	const API_PATH = process.env.NODE_ENV === 'development' ? 'http://localhost:3010/api' : 'https://minyard.dev/scraper/api';
+
+	// STATE
 	const [ screenType, setScreenType ] = useState(null);
+
+	// REFS
+	const currentlyViewing = useRef(null);
+	const currentStories = useRef(null);
 
 	useEffect(() => {
 
@@ -53,7 +60,7 @@ function App() {
 
 		<main className="main-container">
 
-			<NavBar title={ navTitle }/>
+			<NavBar title={ NAV_TITLE }/>
 
 			{ screenType === 'mobile' || screenType === 'tablet' ? (
 
@@ -64,7 +71,14 @@ function App() {
 							<Categories availableCategories={ availableCategories } />
 						</Route>
 
-						<Route path='/:category' children={ <NewsListing apiPath={ apiPath }/>} />
+						<Route path='/:category' children={
+							<NewsListing
+								currentStories={ currentStories }
+								currentlyViewing={ currentlyViewing }
+								apiPath={ API_PATH }
+							/>
+							}
+						/>
 
 					</Switch>
 
@@ -78,11 +92,24 @@ function App() {
 
 							{/* Root path starts on US News */}
 							<Route exact path='/'>
-								<NewsListing apiPath={ apiPath } />
+								<NewsListing
+									currentStories={ currentStories }
+									currentlyViewing={ currentlyViewing }
+									apiPath={ API_PATH }
+								/>
 							</Route>
 
 							{/* Handler for paths containing a category slug*/}
-							<Route path='/:category' children={<NewsListing apiPath={ apiPath }/>} />
+							<Route
+								path='/:category'
+								children={
+									<NewsListing
+										currentStories={ currentStories }
+										currentlyViewing={ currentlyViewing }
+										apiPath={ API_PATH }
+									/>
+								}
+							/>
 
 						</Switch>
 					</RenderView>
