@@ -1,0 +1,40 @@
+.headline {
+
+	font-size:var(--article-hed-size);
+	font-weight:var(--article-hed-weight);
+	line-height:var(--article-hed-line-height);
+	letter-spacing:-0.5px;
+
+}
+
+.bylinesContainer {
+	position:relative;
+	margin:1em 0 1.5em 0;
+	max-width:max-content;
+
+	&:after {
+		content:'';
+		position:absolute;
+		height:2px;
+		width:100%;
+		background:var(--primary-clr);
+		top:50%;
+		left:120%;
+		transform:translateY(-50%);
+	}
+}
+
+.byline {
+	font-weight: var(--article-byline-weight);
+}
+
+.copyContainer {
+
+	p {
+		font-weight:var(--article-copy-weight);
+		&:nth-of-type(2) {
+			margin:1em 0;
+		}
+	}
+
+}
