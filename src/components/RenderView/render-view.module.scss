@@ -1,9 +1,11 @@
 .renderViewContainer {
+	position:relative;
 	height:100%;
+	width:100%;
 
 	@media screen and (min-width:769px) {
 		padding:1em;
-		border:1px solid red;
+		overflow:scroll;
 	}
 
 }
