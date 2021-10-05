@@ -82,7 +82,7 @@ function App() {
 							</Route>
 
 							{/* Handler for paths containing a category slug*/}
-							<Route path='/:category' children={<NewsListing />} />
+							<Route path='/:category' children={<NewsListing apiPath={ apiPath }/>} />
 
 						</Switch>
 					</RenderView>
