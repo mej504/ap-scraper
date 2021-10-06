@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 import styles from './news-listing.module.scss';
 
 import NewsItem from './NewsItem';
+import NewsItemPlaceholder from '../Placeholders/NewsItemPlaceholder';
 
 const NewsListing = ({ currentStories, currentlyViewing, apiPath }) => {
 
@@ -17,7 +18,6 @@ const NewsListing = ({ currentStories, currentlyViewing, apiPath }) => {
 		let isMounted = true;
 
 		const url = `${apiPath}/${category}`;
-
 
 		const fetchListing = async () => {
 
@@ -53,7 +53,7 @@ const NewsListing = ({ currentStories, currentlyViewing, apiPath }) => {
 			setStories(currentStories.current);
 		}
 
-		if( currentlyViewing.current !== category ) {
+		if( currentlyViewing.current !== null && currentlyViewing.current !== category ) {
 			fetchListing().then(([response, newsStories]) => {
 				if( isMounted ) {
 					currentlyViewing.current = category;
@@ -65,9 +65,10 @@ const NewsListing = ({ currentStories, currentlyViewing, apiPath }) => {
 
 		return () => {
 			isMounted = false;
+			setStories(null);
 		}
 
-	}, [ apiPath, category, stories ])
+	}, [ apiPath, category ])
 
 	return (
 
@@ -75,7 +76,9 @@ const NewsListing = ({ currentStories, currentlyViewing, apiPath }) => {
 
 			{ stories === null ? (
 
-				<p>Loading...</p>
+				<ul className={ styles.newsListing }>
+					{ new Array(20).fill(null).map((arr, i) => ( <NewsItemPlaceholder key={i} />)) }
+				</ul>
 
 			) : (
 
@@ -101,3 +104,6 @@ const NewsListing = ({ currentStories, currentlyViewing, apiPath }) => {
 }
 
 export default NewsListing;
+
+/*
+			*/
