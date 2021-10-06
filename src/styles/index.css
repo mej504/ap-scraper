@@ -2,8 +2,11 @@
 	--primary-clr: hsl(212, 62%, 40%);
 	--secondary-clr: hsl(212, 43%, 51%);
 	--rich-black: hsl(44, 5%, 14%);
+	--rose: hsl(355, 71%, 40%);
+	--rose-hover: hsl(355, 71%, 51%);
 	--soft-gray: hsl(212, 40%, 40%);
 	--charcoal: hsl(136, 0%, 15%);
+	--charcoal-hover: hsl(0, 0%, 30%);
 
 	/*
 	------ FONT STYLES ------
@@ -28,7 +31,7 @@
 
 	/* Article */
 	--article-copy-clr: var(--rich-black);
-	--article-hed-size: 2.5rem;
+	--article-hed-size: 3rem;
 	--article-hed-weight: 600;
 	--article-hed-line-height: 1.2;
 
@@ -40,8 +43,14 @@
 	--article-byline-weight: 600;
 
 	/* Placeholders */
-	--article-placeholder-clr: var(--charcoal);
+	--article-placeholder-clr: lightgray;
 	--article-placeholder-radius: 9999px;
+	--newsitem-placeholder-clr: lightgray;
+	--newsitem-placeholder-radius: 9999px;
+
+	/* Buttons */
+	--btn-font-size-sm: 0.9rem;
+	--btn-font-size-md: 1rem;
 
 	/*
 	----- UTILITY STYLES ------
