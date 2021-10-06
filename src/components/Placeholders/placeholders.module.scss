@@ -38,6 +38,41 @@
 	}
 }
 
+.newsItemPlaceholder {
+
+	padding:1em;
+	min-height:130px;
+	background:white;
+	border-radius:var(--card-radius);
+	box-shadow:var(--card-shadow);
+
+	span {
+		border-radius:var(--newsitem-placeholder-radius);
+		display:block;
+		background:lightgray;
+		opacity:0.5;
+		animation:shimmer 1.5s ease-in-out infinite;
+	}
+
+}
+
+.niHeadline {
+	width:100%;
+	height:25%;
+}
+
+.niBylines {
+	width:45%;
+	height:10%;
+	margin-top:2em;
+}
+
+.niTimestamp {
+	width:35%;
+	height:10%;
+	margin-top:1em;
+}
+
 @keyframes shimmer {
 
 	0% {
