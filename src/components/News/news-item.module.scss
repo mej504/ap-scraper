@@ -10,7 +10,9 @@
 	height:var(--height);
 	border-radius:var(--card-radius);
 	box-shadow:var(--card-shadow);
-	transition:background-color 150ms ease, height 250ms ease;
+	transition:background-color 150ms ease, height 250ms ease, transform 250ms ease;
+	transform-origin:center;
+	will-change:auto;
 
 	a {
 		color:var(--primary-clr);
@@ -33,7 +35,7 @@
 	&:hover {
 
 		background:var(--secondary-clr);
-		height:calc(var(--height) + 20px);
+		transform:scale(1.02);
 
 		h4, p {
 			color:white;
