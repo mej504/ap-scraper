@@ -1,4 +1,4 @@
-# AP News Scraper
+jj# AP News Scraper
 ---
 A personal project, this utility fetches a handful of Associated Press stories from a range of available categories.
 
@@ -13,7 +13,7 @@ Categories so far include:
 
 ## Goals with this project
 ---
-To better familiarize myself with React and Node.js web scraping using the Cheerio module for HTML parsing.
+To better familiarize myself with React, as well as Node.js web scraping using the Cheerio module for parsing markup.
 
 ## Front-end
 ---
@@ -21,13 +21,23 @@ The front-end is built with React, and incorporates the react-router-dom module 
 
 ## Todos
 ---
-[ ] Implement implement placeholder cards while fetching news listings
+[X] Implement implement placeholder cards while fetching news listings
 
 [ ] Update nav bar to include a back arrow
 
 [ ] Create hamburger menu
 
 [ ] Remove hamburger for laptops and above
+
+[ ] Add icons to news categories
+
+[ ] Use IndexedDB to cache stories and reduce requests to server
+
+[ ] Create modal with disclaimer about nature of project
+
+[ ] Use cookie to determine whether modal should render
+
+[ ] Implement notice about cookies?
 
 ## Disclaimer
 ---
