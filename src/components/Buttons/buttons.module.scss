@@ -1,10 +1,37 @@
-.btn {
+.btnStretch,
+.btnStatic {
+	
+	font-size: var(--btn-font-size-sm);
+	background:var(--rose);
+	transition:all 150ms ease;
+	border-radius:9999px;
+
+	&:hover {
+		background:var(--rose-hover);
+	}
+
+}
+
+.btnStretch {
 	display:block;
 	text-align:right;
-	background:var(--charcoal);
 	text-decoration:none;
 	color:white;
 	padding:1em 1.5em;
 	font-weight:300;
 	margin-top:2em;
+}
+
+.btnStatic {
+
+	display:block;
+	float:right;
+	min-width:300px;
+	text-align:right;
+	text-decoration:none;
+	color:white;
+	padding:1em 1.5em;
+	font-weight:300;
+	margin-top:3em;
+
 }
