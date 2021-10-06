@@ -9,7 +9,7 @@ import Copy from './sub/Copy';
 import StoryPlaceholder from '../Placeholders/StoryPlaceholder';
 import Button from '../Buttons/Button';
 
-const Article = ({ currentStory, storyFetched, apiPath }) => {
+const Article = ({ screenType, currentStory, apiPath }) => {
 
 	const { slug } = useParams();
 	const [ story, setStory ] = useState(null);
@@ -37,22 +37,17 @@ const Article = ({ currentStory, storyFetched, apiPath }) => {
 
 		}
 
-		if( !storyFetched.current || storyFetched.current === null ) {
+		if( currentStory.current === null ) {
 			fetchStory().then(([response, data]) => {
-				storyFetched.current = true;
 				currentStory.current = data;
+				console.log(data);
 				setStory(data);
 			})
 		} else {
-			setStory(currentStory.current);
+			setStory( currentStory.current );
 		}
 
-		return () => {
-			storyFetched.current = false;
-		}
-
-
-	}, []);
+	}, [ slug ]);
 
 	return (
 
@@ -65,7 +60,11 @@ const Article = ({ currentStory, storyFetched, apiPath }) => {
 				<Bylines bylines={ story.bylines } timestamp={ story.timestamp }/>
 				<Copy paragraphs={ story.copy }/>
 
-				<Button text='Read full story on AP' />
+				<Button
+					type={ screenType === 'mobile' ? 'stretch' : 'static' }
+					slug={ slug }
+					text='Read full story on AP'
+				/>
 
 			</section>
 		))
