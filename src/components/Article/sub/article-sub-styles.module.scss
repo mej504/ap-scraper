@@ -9,19 +9,8 @@
 
 .bylinesContainer {
 	position:relative;
-	margin:1em 0 1.5em 0;
+	margin:1.5em 0 2em 0;
 	max-width:max-content;
-
-	&:after {
-		content:'';
-		position:absolute;
-		height:2px;
-		width:100%;
-		background:var(--primary-clr);
-		top:50%;
-		left:120%;
-		transform:translateY(-50%);
-	}
 }
 
 .byline {
