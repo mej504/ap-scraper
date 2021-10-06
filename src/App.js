@@ -13,6 +13,7 @@ import NavBar from './components/NavBar/NavBar';
 import NewsListing from './components/News/NewsListing';
 import Categories from './components/Categories/Categories';
 import RenderView from './components/RenderView/render-view';
+import Article from './components/Article/Article';
 
 function App() {
 
@@ -26,6 +27,11 @@ function App() {
 	// REFS
 	const currentlyViewing = useRef(null);
 	const currentStories = useRef(null);
+	const currentStory = useRef(null);
+
+	const unsetStory = () => {
+		return currentStory.current = null;
+	}
 
 	useEffect(() => {
 
@@ -48,7 +54,6 @@ function App() {
 
 		window.addEventListener('resize', updateScreen);
 
-
 		return () => {
 			// Cleanup
 			window.removeEventListener('resize', updateScreen);
@@ -57,6 +62,7 @@ function App() {
 	}, [ screenType ])
 
 	return (
+
 
 		<main className="main-container">
 
@@ -67,17 +73,26 @@ function App() {
 				<RenderView>
 
 					<Switch>
+
 						<Route exact path='/'>
 							<Categories availableCategories={ availableCategories } />
 						</Route>
 
-						<Route path='/:category' children={
+						<Route path='/hub/:category' children={
 							<NewsListing
+								unsetStory={ unsetStory }
 								currentStories={ currentStories }
 								currentlyViewing={ currentlyViewing }
 								apiPath={ API_PATH }
 							/>
-							}
+						}/>
+
+						<Route path='/story/:slug' children={
+							<Article
+								screenType={ screenType }
+								currentStory={ currentStory }
+								apiPath={ API_PATH } />
+						}
 						/>
 
 					</Switch>
@@ -93,6 +108,7 @@ function App() {
 							{/* Root path starts on US News */}
 							<Route exact path='/'>
 								<NewsListing
+									unsetStory={ unsetStory }
 									currentStories={ currentStories }
 									currentlyViewing={ currentlyViewing }
 									apiPath={ API_PATH }
@@ -100,16 +116,22 @@ function App() {
 							</Route>
 
 							{/* Handler for paths containing a category slug*/}
-							<Route
-								path='/:category'
-								children={
-									<NewsListing
-										currentStories={ currentStories }
-										currentlyViewing={ currentlyViewing }
-										apiPath={ API_PATH }
-									/>
-								}
-							/>
+							<Route path='/hub/:category' children={
+								<NewsListing
+									unsetStory={ unsetStory }
+									currentStories={ currentStories }
+									currentlyViewing={ currentlyViewing }
+									apiPath={ API_PATH }
+								/>
+							}/>
+
+							{/* Handler for paths containing a story slug*/}
+							<Route path='/story/:slug' children={
+								<Article
+									screenType={ screenType }
+									currentStory={ currentStory }
+									apiPath={ API_PATH }/>
+							}/>
 
 						</Switch>
 					</RenderView>
