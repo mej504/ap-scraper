@@ -23,13 +23,13 @@ The front-end is built with React, and incorporates the react-router-dom module 
 
 [X] Implement implement placeholder cards while fetching news listings
 
-[ ] Update nav bar to include a back arrow
-
 [ ] Create hamburger menu
 
 [ ] Remove hamburger for laptops and above
 
-[ ] Add icons to news categories
+[ ] Resolve edge case with unique component structure of some AP stories (e.g. /article/coronavirus-pandemic-nursing-homes-d1befe76a3a0680b57defb6d9f1cfb66)
+
+[X] Add icons to news categories
 
 [ ] Use IndexedDB to cache stories and reduce requests to server
 
