@@ -39,8 +39,10 @@ const Article = ({ screenType, currentStory, apiPath }) => {
 
 		if( currentStory.current === null ) {
 			fetchStory().then(([response, data]) => {
-				currentStory.current = data;
-				console.log(data);
+				currentStory.current = {
+					slug,
+					...data
+				};
 				setStory(data);
 			})
 		} else {
