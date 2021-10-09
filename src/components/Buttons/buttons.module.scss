@@ -2,12 +2,12 @@
 .btnStatic {
 	
 	font-size: var(--btn-font-size-sm);
-	background:var(--rose);
+	background:var(--primary-clr);
 	transition:all 150ms ease;
 	border-radius:9999px;
 
 	&:hover {
-		background:var(--rose-hover);
+		background:var(--secondary-clr);
 	}
 
 }
