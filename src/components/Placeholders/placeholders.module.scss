@@ -1,6 +1,7 @@
 .storyPlaceholderContainer {
 	padding:1em;
 	width:100%;
+	max-width:840px;
 	height:100%;
 }
 
@@ -8,6 +9,7 @@
 	display:block;
 	opacity:0.5;
 	width:75%;
+	max-width:830px;
 	height:70px;
 	background:var(--article-placeholder-clr);
 	border-radius:var(--article-placeholder-radius);
@@ -19,6 +21,7 @@
 	opacity:0.5;
 	margin-top:2em;
 	width:40%;
+	max-width:420px;
 	height:30px;
 	background:var(--article-placeholder-clr);
 	border-radius:var(--article-placeholder-radius);
