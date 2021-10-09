@@ -3,7 +3,7 @@ import availableCategories from './data/categories';
 
 // Modules
 import { useState, useEffect, useRef } from 'react';
-import { Route, Switch, useParams } from 'react-router-dom';
+import { Route, Switch, useParams, useHistory } from 'react-router-dom';
 
 // Styles
 import './styles/App.css';
@@ -35,8 +35,6 @@ function App() {
 
 	useEffect(() => {
 
-		let { innerWidth } = window;
-
 		// Updates windowWidth on resize
 		const updateScreen = () => {
 
@@ -66,7 +64,7 @@ function App() {
 
 		<main className="main-container">
 
-			<NavBar title={ NAV_TITLE }/>
+			<NavBar screenType={ screenType } title={ NAV_TITLE }/>
 
 			{ screenType === 'mobile' || screenType === 'tablet' ? (
 
@@ -81,6 +79,7 @@ function App() {
 						<Route path='/hub/:category' children={
 							<NewsListing
 								unsetStory={ unsetStory }
+								currentStory={ currentStory }
 								currentStories={ currentStories }
 								currentlyViewing={ currentlyViewing }
 								apiPath={ API_PATH }
@@ -101,7 +100,11 @@ function App() {
 
 			) : (
 				<div className='main-content-container'>
-					<Categories availableCategories={ availableCategories } />
+					<Categories
+						currentlyViewing={ currentlyViewing }
+						screenType={ screenType }
+						availableCategories={ availableCategories }
+					/>
 					<RenderView>
 						<Switch>
 
@@ -109,6 +112,7 @@ function App() {
 							<Route exact path='/'>
 								<NewsListing
 									unsetStory={ unsetStory }
+									currentStory={ currentStory }
 									currentStories={ currentStories }
 									currentlyViewing={ currentlyViewing }
 									apiPath={ API_PATH }
@@ -119,6 +123,7 @@ function App() {
 							<Route path='/hub/:category' children={
 								<NewsListing
 									unsetStory={ unsetStory }
+									currentStory={ currentStory }
 									currentStories={ currentStories }
 									currentlyViewing={ currentlyViewing }
 									apiPath={ API_PATH }
