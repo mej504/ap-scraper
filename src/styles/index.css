@@ -1,9 +1,7 @@
 :root {
-	--primary-clr: hsl(212, 62%, 40%);
-	--secondary-clr: hsl(212, 43%, 51%);
+	--primary-clr: hsl(262, 87%, 45%);
+	--secondary-clr: hsl(262, 43%, 51%);
 	--rich-black: hsl(44, 5%, 14%);
-	--rose: hsl(355, 71%, 40%);
-	--rose-hover: hsl(355, 71%, 51%);
 	--soft-gray: hsl(212, 40%, 40%);
 	--charcoal: hsl(136, 0%, 15%);
 	--charcoal-hover: hsl(0, 0%, 30%);
@@ -33,7 +31,7 @@
 	--article-copy-clr: var(--rich-black);
 	--article-hed-size: 3rem;
 	--article-hed-weight: 600;
-	--article-hed-line-height: 1.2;
+	--article-hed-line-height: 1.1;
 
 	--article-copy-size: 1.1rem;
 	--article-copy-weight: 400;
@@ -78,9 +76,9 @@ html {
 }
 
 body {
+	font-family:'Noto Sans Display', Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	font-family:'Noto Sans Display', Helvetica, sans-serif;
 }
 
 code {
