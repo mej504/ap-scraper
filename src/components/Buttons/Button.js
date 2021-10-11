@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import styles from './buttons.module.scss';
 
 const Button = ({ type, text, slug }) => {
