@@ -14,13 +14,9 @@
 	transform-origin:center;
 	will-change:auto;
 
-	a {
-		color:var(--primary-clr);
-		text-decoration:none;
-	}
-
 	h4, p {
 		transition:color 150ms linear;
+		color:var(--listing-hed-clr);
 	}
 
 	h4 {
