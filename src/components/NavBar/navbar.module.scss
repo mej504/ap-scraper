@@ -3,7 +3,7 @@
 	justify-content:space-between;
 	align-items:center;
 	padding:0.7em 1.25em;
-	background:var(--primary-clr);
+	background:linear-gradient(90deg, var(--primary-clr), var(--secondary-clr));
 
 	h3 {
 		font-weight:var(--nav-hed-weight);
@@ -11,4 +11,8 @@
 		text-transform:uppercase;
 	}
 
+}
+
+.pointer {
+	cursor:pointer;
 }
