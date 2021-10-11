@@ -36,7 +36,7 @@ const Icon = ({ iconName }) => {
 
 	return (
 
-		<img className={ styles.icon } src={ renderIcon(iconName) } />
+		<img alt="" width="60px" height="auto" className={ styles.icon } src={ renderIcon(iconName) } />
 
 	)
 
