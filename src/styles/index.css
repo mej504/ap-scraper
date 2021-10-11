@@ -20,7 +20,7 @@
 	--category-weight:600;
 
 	/* News listings */
-	--listing-hed-clr: hsl(218, 63%, 22%);
+	--listing-hed-clr: var(--rich-black);
 	--listing-byline-clr: var(--rich-black);
 	--hed-size:1rem;
 	--hed-weight:700;
