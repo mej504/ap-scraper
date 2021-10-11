@@ -3,7 +3,7 @@ import availableCategories from './data/categories';
 
 // Modules
 import { useState, useEffect, useRef } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 
 // Styles
 import './styles/App.css';
@@ -54,18 +54,8 @@ function App() {
 
 	}
 
-	// Redirects user to US News category if they request / with no category params and aren't
-	// on mobile or tablet
-
-	if( screenType === 'laptop' || screenType === 'desktop' ) {
-		if( currentPath === '/' ) {
-			history.push('hub/us-news');
-		}
-	}
-
-	// Redirects user to US News category if they request /hub with no category params
+	// Sets initial category based on 
 	if( currentPath === '/hub' || currentPath === '/hub/' ) {
-		history.push('/hub/us-news');
 		setInitialCategory('us-news');
 	} else {
 		setInitialCategory();
@@ -107,7 +97,7 @@ function App() {
 			<NavBar screenType={ screenType } title={ NAV_TITLE }/>
 
 			{ screenType === null ? (
-				null
+				""
 			) : screenType === 'mobile' || screenType === 'tablet' ? (
 
 					<RenderView>
@@ -120,6 +110,10 @@ function App() {
 									screenType={ screenType }
 									availableCategories={ availableCategories }
 								/>
+							</Route>
+
+							<Route exact path='/hub'>
+								<Redirect to="/" />
 							</Route>
 
 							<Route path='/hub/:category'>
@@ -157,17 +151,13 @@ function App() {
 							<Switch>
 
 								{/* Root path starts on US News */}
-								<Route exact path='/' children={
-									<NewsListing
-										screenType={ screenType }
-										fetchInProgress={ fetchInProgress }
-										unsetStory={ unsetStory }
-										currentStory={ currentStory }
-										currentStories={ currentStories }
-										currentlyViewing={ currentlyViewing }
-										apiPath={ API_PATH }
-									/>
-								} />
+								<Route exact path='/'>
+									<Redirect to="/hub/us-news" />
+								</Route>
+
+								<Route exact path='/hub'>
+									<Redirect to="/hub/us-news" />
+								</Route>
 
 								{/* Handler for paths containing a category slug*/}
 								<Route exact path='/hub/:category' children={
