@@ -2,23 +2,35 @@ import { Link } from 'react-router-dom';
 
 import styles from './news-item.module.scss';
 
-const NewsItem = ({ unsetStory, headline, slug, timestamp, byline }) => {
+const NewsItem = ({ currentStory, unsetStory, headline, slug, timestamp, byline }) => {
 
-	const apiPath = process.env.NODE_ENV === 'development' ? `http://localhost:3010/api/story/${slug}` : `https://minyard.dev/api/story/${slug}`;
+	const handleClick = () => {
+
+		if( currentStory.current === null ) {
+			return;
+		}
+
+		if( currentStory.current.slug === slug ) {
+			return;
+		} else {
+			return unsetStory();
+		}
+
+	}
 
 	return (
 
-		<li onClick={ unsetStory } className={ styles.newsItem }>
+		<Link style={{textDecoration:'none'}} to={`/story/${slug}`}>
+			<li onClick={ handleClick } className={ styles.newsItem }>
 
-			<Link to={`/story/${slug}`}>
 				<h4>{headline}</h4>
 				<div className={ styles.metaData }>
 					<p>{byline}</p>
 					<p>{timestamp}</p>
 				</div>
-			</Link>
 
-		</li>
+			</li>
+		</Link>
 
 
 	)
