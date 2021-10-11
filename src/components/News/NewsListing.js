@@ -14,6 +14,7 @@ const NewsListing = ({ screenType, fetchInProgress, currentStory, unsetStory, cu
 
 	// Category provided in /hub/:category
 	let { category } = useParams();
+	category = category || 'us-news';
 
 	useEffect(() => {
 
