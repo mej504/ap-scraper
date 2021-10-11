@@ -1,25 +1,56 @@
 import { useParams } from 'react-router-dom';
-import { useRef, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styles from './news-listing.module.scss';
 
 import NewsItem from './NewsItem';
 import NewsItemPlaceholder from '../Placeholders/NewsItemPlaceholder';
 
-const NewsListing = ({ currentStories, currentlyViewing, apiPath }) => {
+const NewsListing = ({ screenType, fetchInProgress, currentStory, unsetStory, currentStories, currentlyViewing, apiPath }) => {
 
-	let { category } = useParams();
 	const [ stories, setStories ] = useState(null);
+	let controller = new AbortController();
+	let signal = controller.signal;
 
-	if( !category ) category = 'us-news';
+	// Category provided in /hub/:category
+	let { category } = useParams();
 
 	useEffect(() => {
 
-		let isMounted = true;
-
 		const url = `${apiPath}/${category}`;
 
-		const fetchListing = async () => {
+		/**
+		 * Checks to see if a request to the API is necessary
+		 * @returns Boolean | True if story must be fetched, otherwise false
+		 */
+
+		const storiesNeedToBeFetched = () => { 
+			if( stories === null ) {
+				return (
+					currentStories.current === null ? true
+					: currentlyViewing.current === category ? false
+					: true
+				)
+			}
+			return currentlyViewing.current === category ? false : true;
+		}
+
+		/**
+		 * Fetches news stories from API based on :category param
+		 * 
+		 * @param String | url | Target endpoint
+		 * @returns Promise | An array of stories pulled from AP
+		 * 
+		 */
+		const fetchListing = async ( url, signal ) => {
+
+			fetchInProgress.current = true;
+
+			signal.addEventListener('abort', () => {
+				Promise.reject('Fetch request cancelled.').catch((err) => {
+					return;
+				});
+			})
 
 			const headers = new Headers({
 				'Content-Type': 'application/json',
@@ -30,7 +61,8 @@ const NewsListing = ({ currentStories, currentlyViewing, apiPath }) => {
 
 			let listings = await fetch(url, {
 				method: 'GET',
-				headers
+				headers,
+				signal
 			})
 
 			let body = await listings.json();
@@ -38,37 +70,31 @@ const NewsListing = ({ currentStories, currentlyViewing, apiPath }) => {
 
 		}
 
-		// If currentlyViewing is null, we're on our initial load, and no stories have been fetched
-		if( currentlyViewing.current === null ) {
-			fetchListing().then(([response, newsStories]) => {
-				if( isMounted ) {
-					currentlyViewing.current = category;
-					currentStories.current = newsStories;
-					setStories(newsStories);
-				}
-			})
-		} 
+		// Ensures no fetch re
+		if( !fetchInProgress.current && storiesNeedToBeFetched() ) {
 
-		if( currentlyViewing.current === category ) {
+			fetchListing(url, signal).then(([response, stories]) => {
+				fetchInProgress.current = false;
+				currentStories.current = stories;
+				currentlyViewing.current = category;
+				setStories(stories);
+			}).catch((err) => {
+				return;
+			})
+
+		} else {
+			// If we make it here, we can use stories cached in currentStories.current
+			// to prevent unnecessary network request
 			setStories(currentStories.current);
 		}
 
-		if( currentlyViewing.current !== null && currentlyViewing.current !== category ) {
-			fetchListing().then(([response, newsStories]) => {
-				if( isMounted ) {
-					currentlyViewing.current = category;
-					currentStories.current = newsStories;
-					setStories(newsStories);
-				}
-			})
-		}
-
 		return () => {
-			isMounted = false;
+			controller.abort();
+			fetchInProgress.current = false;
 			setStories(null);
 		}
 
-	}, [ apiPath, category ])
+	}, [category, screenType ])
 
 	return (
 
@@ -86,6 +112,8 @@ const NewsListing = ({ currentStories, currentlyViewing, apiPath }) => {
 
 					{ stories.map(({headline, byline, timestamp, slug}, i) => (
 						<NewsItem
+							currentStory={ currentStory }
+							unsetStory={ unsetStory }
 							headline={headline}
 							byline={byline}
 							timestamp={timestamp}
@@ -104,6 +132,3 @@ const NewsListing = ({ currentStories, currentlyViewing, apiPath }) => {
 }
 
 export default NewsListing;
-
-/*
-			*/
