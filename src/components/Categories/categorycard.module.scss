@@ -1,0 +1,10 @@
+.isActive {
+	background:var(--secondary-clr);
+	p {
+		color:white;
+	}
+
+	p, img {
+		transform:translateX(5px);
+	}
+}
