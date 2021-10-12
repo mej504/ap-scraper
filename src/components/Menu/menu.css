@@ -1,0 +1,148 @@
+.menu-container {
+	position:fixed;
+	height:100vh;
+	width:100%;
+	top:0;
+	right:0;
+	opacity:0;
+	transform:translateX(100%);
+	background:linear-gradient(45deg, var(--primary-clr), var(--secondary-clr));
+	z-index:1000;
+}
+
+.menu-container-enter {
+	opacity:0;
+}
+
+.menu-container-enter-active {
+	opacity:0.9;
+	transform:translateX(0);
+	transition:all 300ms;
+}
+
+.menu-container-enter-done {
+	opacity:0.9;
+	transform:translateX(0);
+}
+
+.menu-container-exit {
+	opacity: 0.9;
+	transform:translateX(0);
+}
+
+.menu-container-exit-active {
+	opacity:0;
+	transform:translateX(100%);
+	transition:all 300ms;
+}
+
+.menu-container-exit-done {
+	display:none;
+}
+
+.menu {
+	display:flex;
+	flex-direction:column;
+	align-items:flex-end;
+	justify-content:center;
+	width:100%;
+	height:100%;
+}
+
+.menu > ul {
+	list-style-type:none;
+	width:100%;
+}
+
+.menu a {
+	text-decoration:none;
+}
+
+.menu > ul li {
+	text-align:right;
+	width:100%;
+	padding:1em;
+	font-size:1.2rem;
+	color:white;
+	transition:all 150ms linear;
+}
+
+.menu > ul li:hover {
+	background:var(--primary-clr);
+}
+
+@media screen and (min-width: 465px) {
+
+	.menu-container {
+		width:50%;
+	}
+
+}
+
+/*
+.menu-container-enter {
+	opacity:1;
+	transform:translateX(100%);
+}
+
+.menu-container-enter-active {
+	position:fixed;
+	top:0;
+	right:0;
+	width:100%;
+	height:70vh;
+	opacity:1;
+	transform:translateX(0);
+	z-index:1000;
+	background:linear-gradient(45deg, var(--primary-clr), var(--secondary-clr));
+	transition:all 300ms ease-in-out;
+}
+
+.menu-container-exit {
+	opacity: 0;
+}
+
+.menu-container-exit-active {
+	opacity:0;
+	transform:translateX(100%);
+}
+*/
+
+
+/*
+.menuContainer {
+	position:absolute;
+	top:0;
+	right:0;
+	width:100%;
+	height:70vh;
+	z-index:1000;
+	background:linear-gradient(45deg, var(--primary-clr), var(--secondary-clr));
+}
+
+.animateIn {
+	animation: slide-in 0.5s ease forwards;
+}
+
+.animateOut {
+	animation: slide-out 0.5s ease forwards;
+}
+
+@keyframes slide-in {
+	from {
+		transform:translateX(100%);
+	}
+	to {
+		transform:translateX(0);
+	}
+}
+
+@keyframes slide-out {
+	from {
+		transform:translateX(0);
+	}
+	to {
+		transform:translateX(100%);
+	}
+}
+*/
