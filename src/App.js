@@ -87,7 +87,13 @@ function App() {
 		setInitialCategory('us-news');
 	} 
 
+
 	useEffect(() => {
+
+		// Redirects to home page if /story is requested with no parameter
+		if( currentPath === '/story' || currentPath === '/story/' ) {
+			history.push('/')
+		}
 
 		/**
 		 * Updates screen size
