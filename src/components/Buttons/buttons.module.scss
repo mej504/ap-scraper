@@ -24,9 +24,8 @@
 
 .btnStatic {
 
-	display:block;
-	float:right;
-	min-width:300px;
+	align-self:flex-end;
+	min-width:250px;
 	text-align:right;
 	text-decoration:none;
 	color:white;
