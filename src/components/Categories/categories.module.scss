@@ -14,7 +14,6 @@
 
 	li {
 
-		flex:0 1 45%;
 		font-weight:var(--category-weight);
 		font-size:var(--category-size);
 		border-radius:var(--card-radius);
@@ -75,7 +74,7 @@
 
 }
 
-@media screen and (min-width:769px) {
+@media screen and (min-width:800px) {
 
 	.categoriesContainer {
 		width:300px;
@@ -92,9 +91,11 @@
 		grid-template-columns:1fr;
 		gap:0;
 
+
 		li {
 			border-radius:0;
 			box-shadow:none;
+			min-height:100px;
 
 			img, p {
 				transition:transform 200ms ease;
