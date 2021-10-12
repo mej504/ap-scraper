@@ -11,6 +11,14 @@
 		text-transform:uppercase;
 	}
 
+	@media screen and (min-width:800px) {
+		padding:1.25em;
+	}
+
+}
+
+.hamburgerWrap {
+	z-index:10000;
 }
 
 .pointer {
