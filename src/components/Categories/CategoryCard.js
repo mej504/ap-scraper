@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useRef, useEffect } from 'react';
 
 import Icon from '../Icon/Icon';
@@ -9,6 +9,7 @@ const CategoryCard = ({ previousCategory, screenType, currentlyViewing, category
 
 	const container = useRef(null);
 	const { isActive } = styles;
+	const history = useHistory();
 
 	const activatedClassRequired = () => {
 		return screenType === 'mobile' || screenType === 'tablet' ? false : true;
@@ -33,11 +34,17 @@ const CategoryCard = ({ previousCategory, screenType, currentlyViewing, category
 
 	useEffect(() => {
 
+		let currentSlug = history.location.pathname.split('/')[2];
+
 		if( activatedClassRequired() ) {
 
 			let { current:li } = container;
 
 			if( currentlyViewing.current === slug ) {
+				li.classList.add(isActive);
+			}
+
+			if( currentlyViewing.current === null && currentSlug === slug ) {
 				li.classList.add(isActive);
 			}
 
