@@ -7,7 +7,7 @@
 	justify-content:center;
 	padding:1.25em;
 	background:white;
-	height:var(--height);
+	min-height:var(--height);
 	border-radius:var(--card-radius);
 	box-shadow:var(--card-shadow);
 	transition:background-color 150ms ease, height 250ms ease, transform 250ms ease;
