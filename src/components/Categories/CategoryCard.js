@@ -5,7 +5,7 @@ import Icon from '../Icon/Icon';
 
 import styles from './categorycard.module.scss';
 
-const CategoryCard = ({ screenType, currentlyViewing, categoryName, slug }) => {
+const CategoryCard = ({ previousCategory, screenType, currentlyViewing, categoryName, slug }) => {
 
 	const container = useRef(null);
 	const { isActive } = styles;
@@ -18,6 +18,7 @@ const CategoryCard = ({ screenType, currentlyViewing, categoryName, slug }) => {
 
 		// Do nothing if user clicks the category that's already active
 		if( slug === currentlyViewing.current ) return;
+		previousCategory.current = slug;
 
 		// Remove is-active class from previous category
 		let cards = document.querySelectorAll(`.${isActive}`);
