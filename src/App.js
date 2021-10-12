@@ -19,15 +19,17 @@ function App() {
 
 	// CONSTANTS
 	const NAV_TITLE = 'AP Scraper';
-	const API_PATH = process?.env.NODE_ENV === 'development' ? 'http://localhost:3010/api' : 'https://minyard.dev/scraper/api';
+	const API_PATH = 'http://localhost:3010/api'
 
 	// STATE
 	const [ screenType, setScreenType ] = useState(null);
+	const [ menuOpen, setMenuOpen ] = useState(false);
 
 	// REFS
 	const currentlyViewing = useRef(null);
 	const currentStories = useRef(null);
 	const currentStory = useRef(null);
+	const previousCategory = useRef(null);
 	const fetchInProgress = useRef(false);
 
 	// HISTORY
@@ -36,6 +38,32 @@ function App() {
 
 	const unsetStory = () => {
 		return currentStory.current = null;
+	}
+
+	const clickIsInModal = ( element ) => {
+
+		if( element.className === 'menu-item' ) {
+			return true;
+		}
+
+		if( element.className === 'menu' || element.className === 'hamburger-react' ) {
+			return true;
+		} else {
+			if( element.className === undefined || element.id === undefined ) {
+				clickIsInModal(element.parentElement);
+			}
+			if( element.id === 'root' ) {
+				return false;
+			}
+		}
+		clickIsInModal( element.parentElement );
+		return false;
+	}
+
+	const handleClick = ( e ) => {
+		let result = clickIsInModal( e.target );
+		if( !result ) return setMenuOpen(false);
+		return;
 	}
 
 	const setInitialCategory = ( category ) => {
@@ -57,9 +85,7 @@ function App() {
 	// Sets initial category based on 
 	if( currentPath === '/hub' || currentPath === '/hub/' ) {
 		setInitialCategory('us-news');
-	} else {
-		setInitialCategory();
-	}
+	} 
 
 	useEffect(() => {
 
@@ -73,14 +99,20 @@ function App() {
 			let { innerWidth } = window;
 
 			if( innerWidth <= 425 ) return setScreenType('mobile');
-			if( innerWidth > 425 && innerWidth <= 768 ) return setScreenType('tablet');
-			if( innerWidth > 768 && innerWidth <= 1024 ) return setScreenType('laptop');
+			if( innerWidth > 425 && innerWidth <= 800 ) return setScreenType('tablet');
+			if( innerWidth > 800 && innerWidth <= 1024 ) return setScreenType('laptop');
 
 			return setScreenType('desktop');
 
 		}
 
 		updateScreen();
+
+		if( menuOpen ) {
+			if( screenType === 'laptop' || screenType === 'desktop' ) {
+				setMenuOpen(false);
+			}
+		}
 
 		window.addEventListener('resize', updateScreen);
 
@@ -92,9 +124,16 @@ function App() {
 
 	return (
 
-		<main className="main-container">
+		<main onClick={ handleClick } style={menuOpen ? { overflow:'hidden' } : null } className="main-container">
 
-			<NavBar screenType={ screenType } title={ NAV_TITLE }/>
+			<NavBar
+				currentlyViewing={ currentlyViewing }
+				previousCategory={ previousCategory }
+				menuOpen={ menuOpen }
+				setMenuOpen={ setMenuOpen }
+				path={ currentPath }
+				screenType={ screenType }
+				title={ NAV_TITLE }/>
 
 			{ screenType === null ? (
 				""
@@ -106,6 +145,7 @@ function App() {
 
 							<Route exact path='/'>
 								<Categories
+									previousCategory={ previousCategory }
 									currentlyViewing={ currentlyViewing }
 									screenType={ screenType }
 									availableCategories={ availableCategories }
@@ -118,6 +158,7 @@ function App() {
 
 							<Route path='/hub/:category'>
 								<NewsListing
+									previousCategory={ previousCategory }
 									fetchInProgress={ fetchInProgress }
 									screenType={ screenType }
 									unsetStory={ unsetStory }
@@ -143,6 +184,7 @@ function App() {
 				) : (
 					<div className='main-content-container'>
 						<Categories
+							previousCategory={ previousCategory }
 							currentlyViewing={ currentlyViewing }
 							screenType={ screenType }
 							availableCategories={ availableCategories }
@@ -162,6 +204,7 @@ function App() {
 								{/* Handler for paths containing a category slug*/}
 								<Route exact path='/hub/:category' children={
 									<NewsListing
+										previousCategory={ previousCategory }
 										screenType={ screenType }
 										fetchInProgress={ fetchInProgress }
 										unsetStory={ unsetStory }
