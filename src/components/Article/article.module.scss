@@ -1,4 +1,6 @@
 .articleContainer {
+	display:flex;
+	flex-direction:column;
 	padding:2em;
 	max-width:900px;
 }
