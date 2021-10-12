@@ -2,7 +2,7 @@ import styles from './navbar.module.scss';
 import '../Menu/menu.css';
 
 // Modules
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 import { useHistory } from 'react-router-dom';
