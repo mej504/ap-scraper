@@ -6,7 +6,7 @@ import styles from './news-listing.module.scss';
 import NewsItem from './NewsItem';
 import NewsItemPlaceholder from '../Placeholders/NewsItemPlaceholder';
 
-const NewsListing = ({ screenType, fetchInProgress, currentStory, unsetStory, currentStories, currentlyViewing, apiPath }) => {
+const NewsListing = ({ previousCategory, screenType, fetchInProgress, currentStory, unsetStory, currentStories, currentlyViewing, apiPath }) => {
 
 	const [ stories, setStories ] = useState(null);
 	let controller = new AbortController();
@@ -26,6 +26,7 @@ const NewsListing = ({ screenType, fetchInProgress, currentStory, unsetStory, cu
 		 */
 
 		const storiesNeedToBeFetched = () => { 
+
 			if( stories === null ) {
 				return (
 					currentStories.current === null ? true
@@ -33,7 +34,11 @@ const NewsListing = ({ screenType, fetchInProgress, currentStory, unsetStory, cu
 					: true
 				)
 			}
+
+			if( currentlyViewing.current !== previousCategory.current ) return true;
+
 			return currentlyViewing.current === category ? false : true;
+
 		}
 
 		/**
@@ -73,7 +78,6 @@ const NewsListing = ({ screenType, fetchInProgress, currentStory, unsetStory, cu
 
 		// Ensures no fetch re
 		if( !fetchInProgress.current && storiesNeedToBeFetched() ) {
-
 			fetchListing(url, signal).then(([response, stories]) => {
 				fetchInProgress.current = false;
 				currentStories.current = stories;
@@ -87,6 +91,7 @@ const NewsListing = ({ screenType, fetchInProgress, currentStory, unsetStory, cu
 			// If we make it here, we can use stories cached in currentStories.current
 			// to prevent unnecessary network request
 			setStories(currentStories.current);
+				currentlyViewing.current = category;
 		}
 
 		return () => {
