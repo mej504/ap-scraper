@@ -2,7 +2,7 @@ import styles from './categories.module.scss';
 
 import CategoryCard from './CategoryCard';
 
-const Categories = ({ currentlyViewing, screenType, availableCategories, updateCurrentView }) => {
+const Categories = ({ previousCategory, currentlyViewing, screenType, availableCategories, updateCurrentView }) => {
 
 	return (
 		<div className={ styles.categoriesContainer }>
@@ -12,6 +12,7 @@ const Categories = ({ currentlyViewing, screenType, availableCategories, updateC
 				{availableCategories.map((cat, i) => {
 					return (
 						<CategoryCard
+							previousCategory={ previousCategory }
 							currentlyViewing={ currentlyViewing }
 							screenType={ screenType }
 							updateCurrentView={ updateCurrentView }
