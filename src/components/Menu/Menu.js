@@ -17,7 +17,7 @@ export default function Menu ({ currentlyViewing, previousCategory, setMenuOpen 
 			<ul>
 				{categories.map((cat,i) => (
 
-					<Link to={`/hub/${cat.slug}`} onClick={() => handleClick(cat.slug)}>
+					<Link to={`/hub/${cat.slug}`} key={i+1} onClick={() => handleClick(cat.slug)}>
 
 						<li className='menu-item' key={i}>
 							{cat.name}
