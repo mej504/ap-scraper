@@ -13,12 +13,12 @@ COPY . /app
 
 RUN npm run build
 
-ENV PORT=3010
+ENV PORT=4010
 ENV NODE_ENV=production
 ENV INLINE_RUNTIME_CHUNK=false
 
-EXPOSE 3010
+EXPOSE 4010
 
 USER node
 
-CMD ["pm2-runtime", "npm", "--", "run"]
+CMD ["pm2-runtime", "./bin/init.js"]
