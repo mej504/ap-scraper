@@ -19,7 +19,7 @@ function App() {
 
 	// CONSTANTS
 	const NAV_TITLE = 'AP Scraper';
-	const API_PATH = 'http://localhost:3010/api'
+	const API_PATH = 'http://localhost:4010/api'
 
 	// STATE
 	const [ screenType, setScreenType ] = useState(null);
