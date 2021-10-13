@@ -46,7 +46,7 @@ export default function NavBar({ previousCategory, currentlyViewing, menuOpen, s
 						/>
 					</div>
 
-					<CSSTransition nodeRef={ nodeRef } in={ menuOpen } timeout={ 1000 } classNames='menu-container' onEntering={() => console.log('wat')}>
+					<CSSTransition nodeRef={ nodeRef } in={ menuOpen } timeout={ 1000 } classNames='menu-container'>
 
 						<div className='menu-container' ref={ nodeRef }>
 							<Menu
