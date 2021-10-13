@@ -16,6 +16,7 @@ RUN npm run build
 ENV PORT=4010
 ENV NODE_ENV=production
 ENV INLINE_RUNTIME_CHUNK=false
+ENV PUBLIC_URL=https://minyard.dev/NewsScraper
 
 EXPOSE 4010
 
