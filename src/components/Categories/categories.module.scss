@@ -1,6 +1,6 @@
 .categoriesContainer {
 	padding:1em;
-	height:100%;
+	min-height:100%;
 	overflow-x:hidden;
 }
 
@@ -13,7 +13,7 @@
 	list-style-type:none;
 
 	li {
-
+		padding:1em;
 		font-weight:var(--category-weight);
 		font-size:var(--category-size);
 		border-radius:var(--card-radius);
@@ -22,7 +22,6 @@
 		transition:background-color 200ms ease, transform 275ms ease;
 
 		a {
-			padding:0 1.5em;
 			display:flex;
 			flex-direction:row;
 			align-items:center;
@@ -53,9 +52,6 @@
 		grid-template-columns:repeat(auto-fit, minmax(45%, 1fr));
 
 		li {
-			flex-direction:column;
-			justify-content:center;
-			align-items:flex-start;
 
 			a {
 				flex-direction:column;
@@ -105,7 +101,6 @@
 				flex-direction:row;
 				align-items:center;
 				justify-content:flex-start;
-				padding:0 1em;
 			}
 
 			p {
