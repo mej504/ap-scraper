@@ -31,6 +31,8 @@ The front-end is built with React, and incorporates the react-router-dom module 
 
 [X] Add icons to news categories
 
+[X] Replace .png icons with inline SVG
+
 [ ] Use IndexedDB to cache stories and reduce requests to server
 
 [ ] Create modal with disclaimer about nature of project
