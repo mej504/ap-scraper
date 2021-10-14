@@ -12,7 +12,7 @@ import { Slant as Hamburger } from 'hamburger-react';
 import Menu from '../Menu/Menu';
 
 
-export default function NavBar({ previousCategory, currentlyViewing, menuOpen, setMenuOpen, path, screenType, title }) {
+export default function NavBar({ root, previousCategory, currentlyViewing, menuOpen, setMenuOpen, screenType, title }) {
 
 	// const [ isOpen, setOpen ] = useState(false);
 	const history = useHistory();
@@ -50,6 +50,7 @@ export default function NavBar({ previousCategory, currentlyViewing, menuOpen, s
 
 						<div className='menu-container' ref={ nodeRef }>
 							<Menu
+								root={ root }
 								previousCategory={ previousCategory }
 								currentlyViewing={ currentlyViewing }
 								setMenuOpen={ setMenuOpen }

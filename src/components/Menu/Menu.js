@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import categories from '../../data/categories';
 import './menu.css';
 
-export default function Menu ({ currentlyViewing, previousCategory, setMenuOpen }) {
+export default function Menu ({ root, currentlyViewing, previousCategory, setMenuOpen }) {
 
 	const handleClick = (slug) => {
 		previousCategory.current = slug;
@@ -17,7 +17,7 @@ export default function Menu ({ currentlyViewing, previousCategory, setMenuOpen 
 			<ul>
 				{categories.map((cat,i) => (
 
-					<Link to={`/hub/${cat.slug}`} key={i+1} onClick={() => handleClick(cat.slug)}>
+					<Link to={`${root}/hub/${cat.slug}`} key={i+1} onClick={() => handleClick(cat.slug)}>
 
 						<li className='menu-item' key={i}>
 							{cat.name}

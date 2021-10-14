@@ -9,7 +9,7 @@ import Copy from './sub/Copy';
 import StoryPlaceholder from '../Placeholders/StoryPlaceholder';
 import Button from '../Buttons/Button';
 
-const Article = ({ screenType, currentStory, apiPath }) => {
+const Article = ({ root, screenType, currentStory, apiPath }) => {
 
 	const { slug } = useParams();
 	const [ story, setStory ] = useState(null);

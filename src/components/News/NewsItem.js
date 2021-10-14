@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './news-item.module.scss';
 
-const NewsItem = ({ currentStory, unsetStory, headline, slug, timestamp, byline }) => {
+const NewsItem = ({ root, currentStory, unsetStory, headline, slug, timestamp, byline }) => {
 
 	const handleClick = () => {
 
@@ -20,7 +20,7 @@ const NewsItem = ({ currentStory, unsetStory, headline, slug, timestamp, byline 
 
 	return (
 
-		<Link style={{textDecoration:'none'}} to={`/story/${slug}`}>
+		<Link style={{textDecoration:'none'}} to={`${root}/story/${slug}`}>
 			<li onClick={ handleClick } className={ styles.newsItem }>
 
 				<h4>{headline}</h4>

@@ -17,9 +17,14 @@ import Article from './components/Article/Article';
 
 function App() {
 
+	// HISTORY
+	const history = useHistory();
+	const currentPath = history.location.pathname;
+
 	// CONSTANTS
 	const NAV_TITLE = 'AP Scraper';
-	const API_PATH = 'http://localhost:4010/api'
+	const API_PATH = '/NewsScraper/api'
+	const ROOT = process.env.NODE_ENV === 'production' ? '/NewsScraper' : '';
 
 	// STATE
 	const [ screenType, setScreenType ] = useState(null);
@@ -32,9 +37,6 @@ function App() {
 	const previousCategory = useRef(null);
 	const fetchInProgress = useRef(false);
 
-	// HISTORY
-	const history = useHistory();
-	const currentPath = history.location.pathname;
 
 	const unsetStory = () => {
 		return currentStory.current = null;
@@ -69,7 +71,7 @@ function App() {
 	const setInitialCategory = ( category ) => {
 
 		// Short-circuit if we're at the main dash on mobile or tablet
-		if( currentPath === '/' && ( screenType === 'mobile' || screenType === 'tablet') ) {
+		if( currentPath === `${ROOT}/` && ( screenType === 'mobile' || screenType === 'tablet') ) {
 			return;
 		}
 
@@ -83,7 +85,7 @@ function App() {
 	}
 
 	// Sets initial category based on 
-	if( currentPath === '/hub' || currentPath === '/hub/' ) {
+	if( currentPath === `${ROOT}/hub` || currentPath === `${ROOT}/hub/` ) {
 		setInitialCategory('us-news');
 	} 
 
@@ -91,8 +93,8 @@ function App() {
 	useEffect(() => {
 
 		// Redirects to home page if /story is requested with no parameter
-		if( currentPath === '/story' || currentPath === '/story/' ) {
-			history.push('/')
+		if( currentPath === `${ROOT}/story` || currentPath === `${ROOT}/story/` ) {
+			history.push(`${ROOT}/`)
 		}
 
 		/**
@@ -133,13 +135,15 @@ function App() {
 		<main onClick={ handleClick } style={menuOpen ? { overflow:'hidden' } : null } className="main-container">
 
 			<NavBar
+				root={ ROOT }
 				currentlyViewing={ currentlyViewing }
 				previousCategory={ previousCategory }
 				menuOpen={ menuOpen }
 				setMenuOpen={ setMenuOpen }
 				path={ currentPath }
 				screenType={ screenType }
-				title={ NAV_TITLE }/>
+				title={ NAV_TITLE }
+			/>
 
 			{ screenType === null ? (
 				""
@@ -151,6 +155,7 @@ function App() {
 
 							<Route exact path='/'>
 								<Categories
+									root={ ROOT }
 									previousCategory={ previousCategory }
 									currentlyViewing={ currentlyViewing }
 									screenType={ screenType }
@@ -158,12 +163,13 @@ function App() {
 								/>
 							</Route>
 
-							<Route exact path='/hub'>
-								<Redirect to="/" />
+							<Route exact path={`${ROOT}/hub`} >
+								<Redirect to={`${ROOT}/`} />
 							</Route>
 
-							<Route path='/hub/:category'>
+							<Route path={`${ROOT}/hub/:category`}>
 								<NewsListing
+									root={ ROOT }
 									previousCategory={ previousCategory }
 									fetchInProgress={ fetchInProgress }
 									screenType={ screenType }
@@ -175,8 +181,9 @@ function App() {
 								/>
 							</Route>
 
-							<Route path='/story/:slug'>
+							<Route path={`${ROOT}/story/:slug`}>
 								<Article
+									root={ ROOT }
 									screenType={ screenType }
 									currentStory={ currentStory }
 									apiPath={ API_PATH }
@@ -190,6 +197,7 @@ function App() {
 				) : (
 					<div className='main-content-container'>
 						<Categories
+							root={ ROOT }
 							previousCategory={ previousCategory }
 							currentlyViewing={ currentlyViewing }
 							screenType={ screenType }
@@ -199,17 +207,18 @@ function App() {
 							<Switch>
 
 								{/* Root path starts on US News */}
-								<Route exact path='/'>
-									<Redirect to="/hub/us-news" />
+								<Route exact path={`${ROOT}/`}>
+									<Redirect to={`${ROOT}/hub/us-news`} />
 								</Route>
 
-								<Route exact path='/hub'>
-									<Redirect to="/hub/us-news" />
+								<Route exact path={`${ROOT}/hub`}>
+									<Redirect to={`${ROOT}/hub/us-news`} />
 								</Route>
 
 								{/* Handler for paths containing a category slug*/}
-								<Route exact path='/hub/:category' children={
+								<Route exact path={`${ROOT}/hub/:category`} children={
 									<NewsListing
+										root={ ROOT }
 										previousCategory={ previousCategory }
 										screenType={ screenType }
 										fetchInProgress={ fetchInProgress }
@@ -222,8 +231,9 @@ function App() {
 								} />
 
 								{/* Handler for paths containing a story slug*/}
-								<Route path='/story/:slug' children={
+								<Route path={`${ROOT}/story/:slug`} children={
 									<Article
+										root={ ROOT }
 										screenType={ screenType }
 										currentStory={ currentStory }
 										apiPath={ API_PATH }/>

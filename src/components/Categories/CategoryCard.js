@@ -5,7 +5,7 @@ import Icon from '../Icon/Icon';
 
 import styles from './categorycard.module.scss';
 
-const CategoryCard = ({ previousCategory, screenType, currentlyViewing, categoryName, slug }) => {
+const CategoryCard = ({ root, previousCategory, screenType, currentlyViewing, categoryName, slug }) => {
 
 	const container = useRef(null);
 	const { isActive } = styles;
@@ -56,7 +56,7 @@ const CategoryCard = ({ previousCategory, screenType, currentlyViewing, category
 	return (
 
 		<li onClick={ handleClick } ref={ container }>
-			<Link to={`/hub/${slug}`}>
+			<Link to={`${root}/hub/${slug}`}>
 				<Icon categoryName={ categoryName } iconName={ slug } />
 				<p>{categoryName}</p>
 			</Link>

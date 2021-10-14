@@ -6,7 +6,7 @@ import styles from './news-listing.module.scss';
 import NewsItem from './NewsItem';
 import NewsItemPlaceholder from '../Placeholders/NewsItemPlaceholder';
 
-const NewsListing = ({ previousCategory, screenType, fetchInProgress, currentStory, unsetStory, currentStories, currentlyViewing, apiPath }) => {
+const NewsListing = ({ root, previousCategory, screenType, fetchInProgress, currentStory, unsetStory, currentStories, currentlyViewing, apiPath }) => {
 
 	const [ stories, setStories ] = useState(null);
 	let controller = new AbortController();
@@ -118,6 +118,7 @@ const NewsListing = ({ previousCategory, screenType, fetchInProgress, currentSto
 
 					{ stories.map(({headline, byline, timestamp, slug}, i) => (
 						<NewsItem
+							root={ root }
 							currentStory={ currentStory }
 							unsetStory={ unsetStory }
 							headline={headline}
