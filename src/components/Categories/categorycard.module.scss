@@ -1,10 +1,11 @@
 .isActive {
 	background:var(--secondary-clr);
+
 	p {
 		color:white;
 	}
 
-	p, img {
+	p, svg {
 		transform:translateX(5px);
 	}
 }
