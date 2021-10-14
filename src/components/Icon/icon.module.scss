@@ -1,6 +1,15 @@
 .categorySVG {
 	width:60px;
 	height:auto;
+
+	@media screen and (min-width:600px) {
+		width:80px;
+	}
+
+	@media screen and (min-width:800px) {
+		width:70px;
+	}
+
 }
 
 .svgPurple {
