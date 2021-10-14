@@ -2,7 +2,8 @@
 	--primary-clr: hsl(262, 87%, 45%);
 	--secondary-clr: hsl(262, 43%, 51%);
 	--rich-black: hsl(44, 5%, 14%);
-	--soft-gray: hsl(212, 40%, 40%);
+	--soft-blue: hsl(212, 40%, 40%);
+	--soft-gray: hsl(271, 4%, 55%);
 	--charcoal: hsl(136, 0%, 15%);
 	--charcoal-hover: hsl(0, 0%, 30%);
 
@@ -18,6 +19,7 @@
 	/* Categories */
 	--category-size:1.1rem;
 	--category-weight:600;
+	--category-clr:var(--soft-gray);
 
 	/* News listings */
 	--listing-hed-clr: var(--rich-black);
@@ -37,7 +39,7 @@
 	--article-copy-weight: 400;
 	
 	--article-bylines-size: 0.9rem;
-	--article-bylines-color: var(--soft-gray);
+	--article-bylines-color: var(--soft-blue);
 	--article-byline-weight: 600;
 
 	/* Placeholders */
