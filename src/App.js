@@ -71,13 +71,16 @@ function App() {
 	const setInitialCategory = ( category ) => {
 
 		// Short-circuit if we're at the main dash on mobile or tablet
-		if( currentPath === `${ROOT}/` && ( screenType === 'mobile' || screenType === 'tablet') ) {
+		if( currentPath === `${ROOT}` && ( screenType === 'mobile' || screenType === 'tablet') ) {
 			return;
 		}
 
 		// If we're at /hub/:category, set currentlyViewing to the :category param
 		if( category === undefined && currentPath.includes('/hub/') ) {
-			return currentlyViewing.current = currentPath.split('/')[2];
+			let splitPath = currentPath.split('/');
+
+			// Doing this ensures the correct category is set regardless of environments
+			return splitPath[splitPath.length - 1];
 		}
 
 		return currentlyViewing.current = category;
@@ -94,7 +97,7 @@ function App() {
 
 		// Redirects to home page if /story is requested with no parameter
 		if( currentPath === `${ROOT}/story` || currentPath === `${ROOT}/story/` ) {
-			history.push(`${ROOT}/`)
+			history.push(`${ROOT}`)
 		}
 
 		/**
@@ -132,7 +135,7 @@ function App() {
 
 	return (
 
-		<main onClick={ handleClick } style={menuOpen ? { overflow:'hidden' } : null } className="main-container">
+		<main onClick={ handleClick } style={ menuOpen ? { overflow:'hidden' } : null } className="main-container">
 
 			<NavBar
 				root={ ROOT }
@@ -153,7 +156,7 @@ function App() {
 
 						<Switch>
 
-							<Route exact path='/'>
+							<Route exact path={ROOT}>
 								<Categories
 									root={ ROOT }
 									previousCategory={ previousCategory }
