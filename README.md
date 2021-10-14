@@ -11,6 +11,10 @@ Categories so far include:
 - Entertainment
 - Religion
 
+Users are offered the first three paragraphs of whichever story the select. A link is provided to continue reading the full story on Associated Press' website.
+
+Pictures were deliberately excluded from this project. While web scraping is a notoriously gray area, it would become a great deal less gray in this context since Associated Press images are available only to subscribers of its wire service. It's not a bear I was willing to poke, frankly.
+
 ## Goals with this project
 
 To better familiarize myself with React, as well as Node.js web scraping using the Cheerio module for parsing markup.
@@ -32,6 +36,8 @@ The front-end is built with React, and incorporates the react-router-dom module 
 [X] Add icons to news categories
 
 [X] Replace .png icons with inline SVG
+
+[ ] Tidy up and expand custom CSS properties
 
 [ ] Use IndexedDB to cache stories and reduce requests to server
 
