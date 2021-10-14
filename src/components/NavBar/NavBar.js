@@ -14,7 +14,6 @@ import Menu from '../Menu/Menu';
 
 export default function NavBar({ root, previousCategory, currentlyViewing, menuOpen, setMenuOpen, screenType, title }) {
 
-	// const [ isOpen, setOpen ] = useState(false);
 	const history = useHistory();
 	const nodeRef = useRef(null);
 
