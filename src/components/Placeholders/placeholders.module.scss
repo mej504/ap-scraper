@@ -43,8 +43,10 @@
 
 .newsItemPlaceholder {
 
+	--height: 155px;
+
 	padding:1em;
-	min-height:130px;
+	min-height:var(--height);
 	background:white;
 	border-radius:var(--card-radius);
 	box-shadow:var(--card-shadow);
