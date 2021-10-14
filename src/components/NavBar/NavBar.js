@@ -20,7 +20,7 @@ export default function NavBar({ root, previousCategory, currentlyViewing, menuO
 
 	const handleClick = () => {
 		if( screenType === 'mobile' || screenType === 'tablet' ) {
-			return history.push('/');
+			return history.push(root);
 		}
 		return;
 	}
