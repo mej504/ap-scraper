@@ -63,7 +63,7 @@
 	text-align:right;
 	width:100%;
 	font-size:1rem;
-	padding:0.2em 2em 0.2em 0;
+	padding:0.4em 2em 0.4em 0;
 	letter-spacing:0.5px;
 	color:white;
 	transition:all 150ms linear;
@@ -82,6 +82,11 @@
 }
 
 @media screen and (min-height:300px) {
+
+	.menu {
+		justify-content: center;
+	}
+
 	.menu > ul {
 		padding: 0 0 1.75em 0;
 	}
@@ -90,7 +95,6 @@
 @media screen and (min-height:350px) {
 	.menu {
 		padding:1.25em 0 0 0;
-		justify-content: center;
 	}
 	.menu > ul {
 		padding:0 0 0 0;
