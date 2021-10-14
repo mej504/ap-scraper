@@ -1,4 +1,12 @@
-.icon {
-	width:60px;
+.categorySVG {
+	max-width:60px;
 	height:auto;
+}
+
+.svgPurple {
+	fill:var(--primary-clr);
+}
+
+.svgWhite {
+	fill:white;
 }
