@@ -34,9 +34,14 @@ const CategoryCard = ({ root, previousCategory, screenType, currentlyViewing, ca
 
 	useEffect(() => {
 
-		let currentSlug = history.location.pathname.split('/')[2];
 
 		if( activatedClassRequired() ) {
+
+			let splitPath = history.location.pathname.split('/');
+
+			// In development, the endpoint for categories is /hub/<category>
+			// In production, to work with my server, the endpoint is /NewsScraper/hub/<category>
+			let currentSlug = process.env.NODE_ENV === 'development' ? splitPath[2] : splitPath[splitPath.length - 1];
 
 			let { current:li } = container;
 
