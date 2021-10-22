@@ -23,8 +23,8 @@ function App() {
 
 	// CONSTANTS
 	const NAV_TITLE = 'AP Scraper';
-	const API_PATH = '/NewsScraper/api'
-	const ROOT = process.env.NODE_ENV === 'production' ? '/NewsScraper' : '';
+	const ROOT = '/NewsScraper'
+	const API_PATH = ROOT + '/api';
 
 	// STATE
 	const [ screenType, setScreenType ] = useState(null);
